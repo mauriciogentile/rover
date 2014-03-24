@@ -44,5 +44,40 @@ namespace MarsRover.Test
             target.Move("FF");
             Assert.AreEqual(new Point(0, 0), target.GetPositionInfo().Position);
         }
+
+        [TestMethod]
+        public void should_move_back()
+        {
+            var param = TestHelper.MarsExploration;
+            param.PositionInfo.Position = new Point(0, 0);
+            var target = new Rover(param);
+            target.Move("B");
+            Assert.AreEqual(new Point(0, 1), target.GetPositionInfo().Position);
+        }
+
+        [TestMethod]
+        public void should_move_back_to_the_zero_zero_spot()
+        {
+            var param = TestHelper.MarsExploration;
+            param.PositionInfo.Position = new Point(10, 0);
+            param.PositionInfo.Direction = Direction.Right;
+
+            var target = new Rover(param);
+            target.Move("BBBBBBBBBB");
+            Assert.AreEqual(new Point(0, 0), target.GetPositionInfo().Position);
+        }
+
+        [TestMethod]
+        public void should_move_back_to_the_zero_zero_spot_when_down()
+        {
+            var param = TestHelper.MarsExploration;
+            param.PositionInfo.Position = new Point(0, 10);
+            param.PositionInfo.Direction = Direction.Down;
+
+            var target = new Rover(param);
+            target.Move("BBBBBBBBBB");
+            Assert.AreEqual(new Point(0, 0), target.GetPositionInfo().Position);
+        }
+
     }
 }

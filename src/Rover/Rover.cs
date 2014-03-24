@@ -41,6 +41,9 @@ namespace MarsRover
                     case 'F':
                         MoveForward();
                         break;
+                    case 'B':
+                        MoveBackward();
+                        break;
                     default:
                         break;
                 }
@@ -73,6 +76,28 @@ namespace MarsRover
                 case Direction.Left:
                     break;
                 case Direction.Right:
+                    break;
+            }
+
+            TryMove(nextSpot);
+        }
+
+        void MoveBackward()
+        {
+            var nextSpot = _currentPosition;
+
+            switch (_currentDirection)
+            {
+                case Direction.Up:
+                    nextSpot.Y++;
+                    break;
+                case Direction.Down:
+                    nextSpot.Y--;
+                    break;
+                case Direction.Left:
+                    break;
+                case Direction.Right:
+                    nextSpot.X--;
                     break;
             }
 
