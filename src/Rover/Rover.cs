@@ -78,10 +78,13 @@ namespace MarsRover
                     nextSpot.Y--;
                     break;
                 case Direction.Down:
+                    nextSpot.Y++;
                     break;
                 case Direction.Left:
+                    nextSpot.X--;
                     break;
                 case Direction.Right:
+                    nextSpot.X++;
                     break;
             }
 
@@ -101,6 +104,7 @@ namespace MarsRover
                     nextSpot.Y--;
                     break;
                 case Direction.Left:
+                    nextSpot.X++;
                     break;
                 case Direction.Right:
                     nextSpot.X--;

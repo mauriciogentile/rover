@@ -159,6 +159,57 @@ namespace MarsRover.Test
             Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
         }
 
+        [TestMethod]
+        public void should_move_to_the_oposite_corner()
+        {
+            var param = TestHelper.MarsExploration;
+            param.Terrain.FarthestPoint = new Point(3, 3);
+            var target = new Rover(param);
 
+            Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
+            Assert.AreEqual(new Point(0, 0), target.GetPositionInfo().Position);
+
+            target.Move("RFRFLFRFLFRFLF");
+
+            Assert.AreEqual(Direction.Right, target.GetPositionInfo().Direction);
+            Assert.AreEqual(param.Terrain.FarthestPoint, target.GetPositionInfo().Position);
+        }
+
+        [TestMethod]
+        public void should_move_to_the_oposite_corner_moving_backawrds()
+        {
+            var param = TestHelper.MarsExploration;
+            param.Terrain.FarthestPoint = new Point(3, 3);
+            var target = new Rover(param);
+
+            Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
+            Assert.AreEqual(new Point(0, 0), target.GetPositionInfo().Position);
+
+            target.Move("BBBLBBB");
+
+            Assert.AreEqual(Direction.Left, target.GetPositionInfo().Direction);
+            Assert.AreEqual(param.Terrain.FarthestPoint, target.GetPositionInfo().Position);
+        }
+
+        [TestMethod]
+        public void should_do_a_round_trip()
+        {
+            var param = TestHelper.MarsExploration;
+            param.Terrain.FarthestPoint = new Point(3, 3);
+            var target = new Rover(param);
+
+            Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
+            Assert.AreEqual(new Point(0, 0), target.GetPositionInfo().Position);
+
+            target.Move("RFRFLFRFLFRFLF");
+
+            Assert.AreEqual(Direction.Right, target.GetPositionInfo().Direction);
+            Assert.AreEqual(param.Terrain.FarthestPoint, target.GetPositionInfo().Position);
+
+            target.Move("LFFFLFFFR");
+
+            Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
+            Assert.AreEqual(new Point(0, 0), target.GetPositionInfo().Position);
+        }
     }
 }
