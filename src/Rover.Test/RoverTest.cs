@@ -211,5 +211,16 @@ namespace MarsRover.Test
             Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
             Assert.AreEqual(new Point(0, 0), target.GetPositionInfo().Position);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void should_throw_error_when_invalid_commands_are_sent()
+        {
+            var param = TestHelper.MarsExploration;
+            param.Terrain.FarthestPoint = new Point(3, 3);
+            var target = new Rover(param);
+            target.Move("LFRPpp654");
+        }
+
     }
 }

@@ -32,6 +32,8 @@ namespace MarsRover
 
         public void Move(string commands)
         {
+            ValidateCommands(commands);
+
             int i = 0;
             do
             {
@@ -56,6 +58,18 @@ namespace MarsRover
                 i++;
             }
             while (i < commands.Length);
+        }
+
+        void ValidateCommands(string commands)
+        {
+            for (int i = 0; i < commands.Length; i++)
+            {
+                char command = commands[i];
+                if (command != 'F' && command != 'B' && command != 'L' && command != 'R')
+                {
+                    throw new InvalidOperationException("Invalid command detected!");
+                }
+            }
         }
 
         void TryMove(Point nextSpot)
