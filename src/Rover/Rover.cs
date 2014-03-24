@@ -44,6 +44,12 @@ namespace MarsRover
                     case 'B':
                         MoveBackward();
                         break;
+                    case 'L':
+                        TurnLeft();
+                        break;
+                    case 'R':
+                        TurnRight();
+                        break;
                     default:
                         break;
                 }
@@ -102,6 +108,44 @@ namespace MarsRover
             }
 
             TryMove(nextSpot);
+        }
+
+        void TurnLeft()
+        {
+            switch (_currentDirection)
+            {
+                case Direction.Up:
+                    _currentDirection = Direction.Left;
+                    break;
+                case Direction.Down:
+                    _currentDirection = Direction.Right;
+                    break;
+                case Direction.Left:
+                    _currentDirection = Direction.Down;
+                    break;
+                case Direction.Right:
+                    _currentDirection = Direction.Up;
+                    break;
+            }
+        }
+
+        void TurnRight()
+        {
+            switch (_currentDirection)
+            {
+                case Direction.Up:
+                    _currentDirection = Direction.Right;
+                    break;
+                case Direction.Down:
+                    _currentDirection = Direction.Left;
+                    break;
+                case Direction.Left:
+                    _currentDirection = Direction.Up;
+                    break;
+                case Direction.Right:
+                    _currentDirection = Direction.Down;
+                    break;
+            }
         }
     }
 }

@@ -79,5 +79,86 @@ namespace MarsRover.Test
             Assert.AreEqual(new Point(0, 0), target.GetPositionInfo().Position);
         }
 
+        [TestMethod]
+        public void should_turn_to_the_left_when_up_and_L()
+        {
+            var param = TestHelper.MarsExploration;
+            var target = new Rover(param);
+            Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
+            target.Move("L");
+            Assert.AreEqual(Direction.Left, target.GetPositionInfo().Direction);
+        }
+
+        [TestMethod]
+        public void should_point_down_when_up_and_LL()
+        {
+            var param = TestHelper.MarsExploration;
+            var target = new Rover(param);
+            Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
+            target.Move("LL");
+            Assert.AreEqual(Direction.Down, target.GetPositionInfo().Direction);
+        }
+
+        [TestMethod]
+        public void should_point_right_when_up_and_LLL()
+        {
+            var param = TestHelper.MarsExploration;
+            var target = new Rover(param);
+            Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
+            target.Move("LLL");
+            Assert.AreEqual(Direction.Right, target.GetPositionInfo().Direction);
+        }
+
+        [TestMethod]
+        public void should_turn_to_the_right_when_up_and_R()
+        {
+            var param = TestHelper.MarsExploration;
+            var target = new Rover(param);
+            Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
+            target.Move("R");
+            Assert.AreEqual(Direction.Right, target.GetPositionInfo().Direction);
+        }
+
+        [TestMethod]
+        public void should_point_down_when_up_and_RR()
+        {
+            var param = TestHelper.MarsExploration;
+            var target = new Rover(param);
+            Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
+            target.Move("RR");
+            Assert.AreEqual(Direction.Down, target.GetPositionInfo().Direction);
+        }
+
+        [TestMethod]
+        public void should_point_left_when_up_and_RRR()
+        {
+            var param = TestHelper.MarsExploration;
+            var target = new Rover(param);
+            Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
+            target.Move("RRR");
+            Assert.AreEqual(Direction.Left, target.GetPositionInfo().Direction);
+        }
+
+        [TestMethod]
+        public void should_point_up_when_up_and_LR()
+        {
+            var explorationInfo = TestHelper.MarsExploration;
+            var target = new Rover(explorationInfo);
+            Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
+            target.Move("LR");
+            Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
+        }
+
+        [TestMethod]
+        public void should_point_up_when_up_and_RL()
+        {
+            var param = TestHelper.MarsExploration;
+            var target = new Rover(param);
+            Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
+            target.Move("RL");
+            Assert.AreEqual(Direction.Up, target.GetPositionInfo().Direction);
+        }
+
+
     }
 }
