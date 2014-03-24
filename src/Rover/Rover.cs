@@ -32,12 +32,13 @@ namespace MarsRover
 
         public void Move(string commands)
         {
-            ValidateCommands(commands);
+            string commands1 = commands.ToUpper();
+            ValidateCommands(commands1);
 
             int i = 0;
             do
             {
-                var command = commands[i];
+                var command = commands1[i];
                 switch (command)
                 {
                     case 'F':
@@ -57,7 +58,7 @@ namespace MarsRover
                 }
                 i++;
             }
-            while (i < commands.Length);
+            while (i < commands1.Length);
         }
 
         void ValidateCommands(string commands)

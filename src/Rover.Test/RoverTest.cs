@@ -222,5 +222,15 @@ namespace MarsRover.Test
             target.Move("LFRPpp654");
         }
 
+        [TestMethod]
+        public void should_process_commands_case_insensitively()
+        {
+            var param = TestHelper.MarsExploration;
+            var target1 = new Rover(param);
+            var target2 = new Rover(param);
+            target1.Move("LB");
+            target2.Move("lb");
+            Assert.AreEqual<PositionInfo>(target1.GetPositionInfo(), target2.GetPositionInfo());
+        }
     }
 }
