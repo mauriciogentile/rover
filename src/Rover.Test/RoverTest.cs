@@ -232,5 +232,50 @@ namespace MarsRover.Test
             target2.Move("lb");
             Assert.AreEqual<PositionInfo>(target1.GetPositionInfo(), target2.GetPositionInfo());
         }
+
+        [TestMethod]
+        public void should_return_false_if_obstacle_found()
+        {
+            var param = TestHelper.MarsExploration;
+            param.PositionInfo.Position = new Point(0, 2);
+
+            var obstacle = new Point(0, 1);
+            param.Terrain.AddObstacle(obstacle);
+
+            var target = new Rover(param);
+            var noObstacles = target.Move("FF");
+
+            Assert.AreEqual(new Point(0, 2), target.GetPositionInfo().Position);
+            Assert.IsFalse(noObstacles);
+        }
+
+        [TestMethod]
+        public void should_return_false_if_obstacle_found_1()
+        {
+            var param = TestHelper.MarsExploration;
+            param.PositionInfo.Position = new Point(0, 3);
+
+            var obstacle = new Point(0, 1);
+            param.Terrain.AddObstacle(obstacle);
+
+            var target = new Rover(param);
+            var noObstacles = target.Move("FFF");
+
+            Assert.IsFalse(noObstacles);
+            Assert.AreEqual(new Point(0, 2), target.GetPositionInfo().Position);
+        }
+
+        [TestMethod]
+        public void should_return_true_if_no_obstacles_found()
+        {
+            var param = TestHelper.MarsExploration;
+            param.PositionInfo.Position = new Point(0, 3);
+
+            var target = new Rover(param);
+            var noObstacles = target.Move("FFF");
+
+            Assert.IsTrue(noObstacles);
+            Assert.AreEqual(new Point(0, 0), target.GetPositionInfo().Position);
+        }
     }
 }

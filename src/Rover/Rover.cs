@@ -30,22 +30,23 @@ namespace MarsRover
             };
         }
 
-        public void Move(string commands)
+        public bool Move(string commands)
         {
             string commands1 = commands.ToUpper();
             ValidateCommands(commands1);
 
             int i = 0;
+            bool noObstacles = true;
             do
             {
                 var command = commands1[i];
                 switch (command)
                 {
                     case 'F':
-                        MoveForward();
+                        noObstacles = MoveForward();
                         break;
                     case 'B':
-                        MoveBackward();
+                        noObstacles = MoveBackward();
                         break;
                     case 'L':
                         TurnLeft();
@@ -58,7 +59,9 @@ namespace MarsRover
                 }
                 i++;
             }
-            while (i < commands1.Length);
+            while (noObstacles && i < commands1.Length);
+
+            return noObstacles;
         }
 
         void ValidateCommands(string commands)
@@ -73,17 +76,19 @@ namespace MarsRover
             }
         }
 
-        void TryMove(Point nextSpot)
+        bool TryMove(Point nextSpot)
         {
-            if (_terrain.IsOutOfBounds(nextSpot))
+            if (_terrain.IsOutOfBounds(nextSpot) || _terrain.HasObstacleAt(nextSpot))
             {
-                return;
+                return false;
             }
 
             _currentPosition = nextSpot;
+
+            return true;
         }
 
-        void MoveForward()
+        bool MoveForward()
         {
             var nextSpot = _currentPosition;
 
@@ -103,10 +108,10 @@ namespace MarsRover
                     break;
             }
 
-            TryMove(nextSpot);
+            return TryMove(nextSpot);
         }
 
-        void MoveBackward()
+        bool MoveBackward()
         {
             var nextSpot = _currentPosition;
 
@@ -126,7 +131,7 @@ namespace MarsRover
                     break;
             }
 
-            TryMove(nextSpot);
+            return TryMove(nextSpot);
         }
 
         void TurnLeft()
