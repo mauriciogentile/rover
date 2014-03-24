@@ -1,0 +1,9 @@
+/src/Rover.Test/TestResults
+/src/Rover.Test/bin/Debug
+/src/Rover/bin/Debug
+/src/*.suo
+/src/Rover.Test/obj/Debug
+/src/Rover/obj/Debug
+/src/TestResults
+/src/Rover/*.user
+/src/Rover.Test/*.user
