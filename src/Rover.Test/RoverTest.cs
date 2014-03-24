@@ -2,12 +2,21 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
 using System.Threading.Tasks;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace MarsRover.Test
 {
     [TestClass]
     public class RoverTest
     {
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void should_throw_error_when_params_are_null()
+        {
+            var target = new Rover(null);
+        }
+
         [TestMethod]
         public void should_start_at_init_position()
         {

@@ -10,12 +10,16 @@ namespace MarsRover
     public class Rover
     {
         private readonly Terrain _terrain;
-        private object _lock = new object();
         private Point _currentPosition;
         private Direction _currentDirection;
 
         public Rover(ExplorationParams param)
         {
+            if (param == null)
+            {
+                throw new ArgumentNullException("param");
+            }
+
             _currentPosition = param.PositionInfo.Position;
             _currentDirection = param.PositionInfo.Direction;
             _terrain = param.Terrain;
